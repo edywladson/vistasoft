@@ -1,0 +1,31 @@
+{
+  "name": "edywladson/vistasoft",
+  "description": "Library to consume the Vista Soft API (Biblioteca para consumir a API da Vista Soft)",
+  "keywords": [
+    "Vista",
+    "Vista Soft",
+    "VistaSoft",
+    "Edy Wladson",
+    "API",
+    "Vista Soft API"
+  ],
+  "homepage": "https://github.com/edywladson",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Edy Wladson",
+      "email": "edywladson@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "EdyWladson\\VistaSoft\\": "src"
+    }
+  }
+}
