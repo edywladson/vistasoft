@@ -1,16 +1,19 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
 
-use EdyWladson\VistaSoft\VistaSoft;
 
-$vista = new VistaSoft("http=>//sandbox-rest.vistahost.com.br", "c9fdd79584fb8d369a6a579af1a8f681");
+$vista = new \EdyWladson\VistaSoft\VistaSoft("http://sandbox-rest.vistahost.com.br", "c9fdd79584fb8d369a6a579af1a8f681");
 
-//CLIENT LIST [LISTAR CLIENTES]
-//$get = $vista
-//    ->endpoint("/clientes/listar")
-//    ->fields(["Codigo", "Nome"])
-//    ->get()->callback();
-//var_dump($get);
+/**
+ * CLIENTES
+ */
+
+//CLIENT LIST [LISTAR CLIENTES]//CLIENT LIST [LISTAR CLIENTES]
+$get = $vista
+    ->endpoint("/clientes/listar")
+    ->fields(["Codigo", "Nome"])
+    ->get()->callback();
+var_dump($get);
 
 //CLIENT DETAILS [DETALHES DO CLIENTE]
 //$get = $vista
@@ -64,13 +67,15 @@ $vista = new VistaSoft("http=>//sandbox-rest.vistahost.com.br", "c9fdd79584fb8d3
 //
 //var_dump($put);
 
-
+/**
+ * IMÓVEIS
+ */
 //IMMOBILE LIST [LISTA DE IMÓVEIS]
-$get = $vista
-    ->endpoint("/imoveis/listar")
-    ->fields(["Codigo", "Bairro"])
-    ->get();
-var_dump($get);
+//$get = $vista
+//    ->endpoint("/imoveis/listar")
+//    ->fields(["Codigo", "Bairro"])
+//    ->get()->callback();
+//var_dump($get);
 
 //FILTER IMMOBILE LIST [LISTA DE IMÓVEIS COM FILTRO]
 //$get = $vista
