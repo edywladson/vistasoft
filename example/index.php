@@ -1,8 +1,21 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
-
-
 $vista = new \EdyWladson\VistaSoft\VistaSoft("http://sandbox-rest.vistahost.com.br", "c9fdd79584fb8d369a6a579af1a8f681");
+?>
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Como Usar</title>
+</head>
+<body>
+
+<?php
 
 /**
  * CLIENTES
@@ -137,5 +150,9 @@ var_dump($get);
 //    ->endpoint("/imoveis/detalhes")
 //    ->immobileId(3152)
 //    ->fields(["Categoria"=>"Apartamento"])
-//    ->post()->callback();
+//    ->put()->callback();
 //var_dump($post);
+?>
+
+</body>
+</html>
