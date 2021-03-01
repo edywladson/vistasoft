@@ -84,10 +84,10 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$post = $vista
+$put = $vista
     ->clientId(73)
     ->fields(["FoneResidencial" => "21 8653 9050"])
-    ->post("/clientes/detalhes")->callback();
+    ->put("/clientes/detalhes")->callback();
 
 ```
 
@@ -128,10 +128,10 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$post = $vista
+$put = $vista
     ->immobileId(3152)
     ->fields(["NumeroEnd"=>"700"])
-    ->post("/imoveis/listar")->callback();
+    ->pust("/imoveis/listar")->callback();
 
 ```
 
