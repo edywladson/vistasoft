@@ -31,21 +31,20 @@ composer require edywladson/vistasoft
 
 ## Documentação
 
-Para mais detalhes sobre como usar, veja uma pasta de exemplo no diretório do componente. Nela terá vários exemplos de uso. Ele funciona assim:
+Para mais detalhes sobre como usar, veja uma pasta de [exemplo](https://github.com/edywladson/vistasoft/tree/master/example) no diretório do componente. Nela terá vários exemplos de uso, lembre também de consultar a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/). 
 
-#### Utilização:
+#### O componente funciona assim:
 
-- **endpoint()** - *[STRING]* Aqui você deve colocar o endpoint para a chamada. Lembre sempre de colocar  a barra "/" no início do endpoint.
 - **fields()** - *[ARRAY]* Insira aqui os campos que você deseja receber no seu request. 
 - **leads()** - *[ARRAY]* Utilizado para o envio de leads
 - **filter()** - *[ARRAY]* Utilize o filter para filtrar as informações que você precisa.
 - **order()** - *[ARRAY]* O order é utilizado para ordenar a sua pesquisa.
-- **paginator()** - Utilize para realizar paginação do conteúdo. Ele pode receber 3 parâmetros, o **page** que mostra em qual página você está, o **quantity** que determina quantos resultados por página e o **total** que retornará quantidade total de itens da solicitação. Por padrão já vem o page = 1, quantity = 20 e total = false.
+- **paginator()** - Utilize para realizar paginação do conteúdo. Ele pode receber 3 parâmetros, o **page** que mostra em qual página você está, o **quantity** que determina quantos resultados por página e o **total** que retornará quantidade total de itens da solicitação. Por padrão já é definido o page = 1, quantity = 20 e total = false.
 - **clientId()** - *[INT]* Utilize para informar o ID do cliente.
 - **immobileId()** - *[INT]* Utilize para informar o ID do imóvel.
-- **get()** - Utilizado para realizar uma soliciação GET
-- **post()** - Utilizado para realizar um POST [Cadastro de clientes, imóveis e leads]
-- **put()** - Utilizado para realizar um PUT [Atualização de clientes e imóveis]
+- **get()** - [STRING] Utilizado para realizar uma soliciação GET
+- **post()** - [STRING] Utilizado para realizar um POST [Cadastro de clientes, imóveis e leads]
+- **put()** - [STRING] Utilizado para realizar um PUT [Atualização de clientes e imóveis]
 - **callback()** - Retorna o resultado da solicitação
 
 ### Consulta, cadastro e atualiação de clientes
@@ -57,14 +56,13 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$get = $vista->endpoint("/clientes/listar")
+$get = $vista
     ->fields([["Codigo", "Nome"])
     ->filter(["DataAtualizacao" => ["2021-01-10", "2021-02-10"]])
     ->order(["Codigo" => "asc"])
-    ->paginator(1, 10, true)->get()->callback();
+    ->paginator(1, 10, true)
+    ->get("/clientes/listar")->callback();
 ```
-
-Para mais informações sobre campos, acesse a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/).
 
 ##### Cadastro [POST]:
 
@@ -73,13 +71,11 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$post = $vista->endpoint("/clientes/detalhes")
+$post = $vista
     ->fields(["Nome" => "João Felix", "FonePrincipal" => "00 0000 0000", "VeiculoCaptacao" => "Portal 10"])
-    ->post()->callback();
+    ->post("/clientes/detalhes")->callback();
 
 ```
-
-Para mais informações sobre o cadastro de clientes, acesse a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/).
 
 ##### Atualização [PUT]:
 
@@ -88,14 +84,12 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$post = $vista->endpoint("/clientes/listar")
+$post = $vista
     ->clientId(73)
     ->fields(["FoneResidencial" => "21 8653 9050"])
-    ->post()->callback();
+    ->post("/clientes/detalhes")->callback();
 
 ```
-
-Para mais informações sobre a atualização de clientes, acesse a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/).
 
 ### Consulta, cadastro e atualiação de imóveis
 
@@ -106,14 +100,13 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$get = $vista->endpoint("/imoveis/listar")
+$get = $vista
     ->fields(["Codigo", "Bairro"])
     ->filter(["Bairro" => ["Centro", "Moema"]])
     ->order(["Bairro" => "asc"])
-    ->paginator()->get()->callback();
+    ->paginator()
+    ->get("/imoveis/listar")->callback();
 ```
-Para mais informações sobre campos, acesse a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/).
-
 ##### Cadastro [POST]:
 
 ```php
@@ -122,13 +115,11 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$post = $vista->endpoint("/imoveis/detalhes")
+$post = $vista
     ->fields(["Categoria"=>"Apartamento","Endereco"=>"Rua Victor Meirelles","NumeroEnd"=>"600","Complemento"=>"901","Bairro"=>"Campinas","Cidade"=>"São José","UF"=>"SC","CEP"=>"88101170","Situacao"=>"Novo","Ocupacao"=>"Ocupado"])
-    ->post()->callback();
+    ->post("/imoveis/detalhes")->callback();
 
 ```
-
-Para mais informações sobre o cadastro de imóveis, acesse a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/).
 
 ##### Atualização [PUT]:
 
@@ -137,14 +128,12 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 
-$post = $vista->endpoint("/imoveis/listar")
+$post = $vista
     ->immobileId(3152)
     ->fields(["NumeroEnd"=>"700"])
-    ->post()->callback();
+    ->post("/imoveis/listar")->callback();
 
 ```
-
-Para mais informações sobre a atualização de imóveis, acesse a [documentação da API da Vista Soft](https://www.vistasoft.com.br/api/).
 
 ## Contribuindo
 

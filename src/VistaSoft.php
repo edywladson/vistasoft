@@ -4,6 +4,8 @@
 namespace EdyWladson\VistaSoft;
 
 
+use Exception;
+
 /**
  * Class VistaSoft
  * @package EdyWladson\VistaSoft
@@ -15,9 +17,6 @@ class VistaSoft
 
     /** @var string */
     private $apiKey;
-
-    /** @var string */
-    private $endpoint;
 
     /** @var array */
     private $build;
@@ -143,16 +142,6 @@ class VistaSoft
     }
 
     /**
-     * @param string $endpoint
-     * @return $this
-     */
-    public function endpoint(string $endpoint): VistaSoft
-    {
-        $this->endpoint = $endpoint;
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function callback()
@@ -164,9 +153,13 @@ class VistaSoft
      * GET
      * @return $this
      */
-    public function get(): VistaSoft
+    public function get($endpoint): VistaSoft
     {
-        $url = "{$this->apiUrl}{$this->endpoint}?key={$this->apiKey}";
+        if ($endpoint[0] != "/"){
+            $endpoint = substr_replace($endpoint, "/", 0, 0);
+        }
+
+        $url = "{$this->apiUrl}{$endpoint}?key={$this->apiKey}";
         $fields = json_encode($this->build);
         $url .= "&pesquisa={$fields}{$this->showtotal}{$this->clientId}{$this->immobileId}";
 
@@ -182,9 +175,13 @@ class VistaSoft
      * POST
      * @return $this
      */
-    public function post(): VistaSoft
+    public function post($endpoint): VistaSoft
     {
-        $url = "{$this->apiUrl}{$this->endpoint}?key={$this->apiKey}";
+        if ($endpoint[0] != "/"){
+            $endpoint = substr_replace($endpoint, "/", 0, 0);
+        }
+
+        $url = "{$this->apiUrl}{$endpoint}?key={$this->apiKey}";
         $fields = "cadastro=" . json_encode($this->build);
         $url .= "{$this->clientId}{$this->immobileId}";
 
@@ -206,13 +203,15 @@ class VistaSoft
      * PUT
      * @return $this
      */
-    public function put(): VistaSoft
+    public function put($endpoint): VistaSoft
     {
-        $url = "{$this->apiUrl}{$this->endpoint}?key={$this->apiKey}";
+        if ($endpoint[0] != "/"){
+            $endpoint = substr_replace($endpoint, "/", 0, 0);
+        }
+
+        $url = "{$this->apiUrl}{$endpoint}?key={$this->apiKey}";
         $fields = "cadastro=" . json_encode($this->build);
         $url .= "{$this->clientId}{$this->immobileId}";
-
-        var_dump($fields);
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
