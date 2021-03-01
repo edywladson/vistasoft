@@ -131,7 +131,7 @@ $vista = new \EdyWladson\VistaSoft\VistaSoft("api_url", "api_key");
 $put = $vista
     ->immobileId(3152)
     ->fields(["NumeroEnd"=>"700"])
-    ->pust("/imoveis/listar")->callback();
+    ->put("/imoveis/listar")->callback();
 
 ```
 
