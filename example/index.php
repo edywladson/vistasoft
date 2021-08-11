@@ -165,7 +165,7 @@ $post = $vista
     ->fields(["Imovel" => 3152, "proprietario" => ["Nome"=>"Arnaldo Fagundes","FonePrincipal"=>"21 99008899","VeiculoCaptacao"=>"Site"]])
     ->post("/imoveis/detalhes")->callback();
 var_dump($post);
-//OU
+
 $post = $vista
     ->fields(["Imovel" => 3152, "proprietario" => 19159])
     ->post("/imoveis/detalhes")->callback();
